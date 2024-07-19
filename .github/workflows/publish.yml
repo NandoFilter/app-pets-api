@@ -40,7 +40,7 @@ jobs:
     name: Deploy to Prod
     environment:
       name: production
-    need: [staging]
+    needs: [staging]
 
     runs-on: ubuntu-latest
 
