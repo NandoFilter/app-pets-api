@@ -21,12 +21,12 @@ jobs:
 
     steps:
       - name: Checkout code
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Using Node.js
-          uses: actions/setup-node@v2
-          with:
-            node-version: 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
 
       - name: run install, build and test
         run: |
@@ -46,7 +46,7 @@ jobs:
 
     steps:
       - name: Checkout code
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Using Node.js
         uses: actions/setup-node@v2
