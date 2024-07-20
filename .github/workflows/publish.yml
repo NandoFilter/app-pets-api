@@ -35,9 +35,6 @@ jobs:
           npm run build
           npm run test
 
-      - name: Fetch all branches
-        run: git fetch --all
-
       - name: Configure Git
         run: |
           git config --global user.name 'github-actions[bot]'
@@ -45,8 +42,9 @@ jobs:
 
       - name: Deploy to Staging
         run: |
+          git fetch origin
           git checkout staging
-          git merge main --allow-unrelated-histories
+          git merge main -X theirs
           git push origin staging
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -77,9 +75,6 @@ jobs:
           npm run build
           npm run test
 
-      - name: Fetch all branches
-        run: git fetch --all
-
       - name: Configure Git
         run: |
           git config --global user.name 'github-actions[bot]'
@@ -87,8 +82,9 @@ jobs:
 
       - name: Deploy to Production
         run: |
+          git fetch origin
           git checkout production
-          git merge staging --allow-unrelated-histories
+          git merge main -X theirs
           git push origin production
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
