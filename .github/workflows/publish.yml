@@ -38,11 +38,18 @@ jobs:
       - name: Fetch all branches
         run: git fetch --all
 
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
       - name: Deploy to Staging
         run: |
           git checkout staging
           git merge main --allow-unrelated-histories
           git push origin staging
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   production:
     if: github.event.inputs.releaseType == 'production'
@@ -73,8 +80,15 @@ jobs:
       - name: Fetch all branches
         run: git fetch --all
 
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
       - name: Deploy to Production
         run: |
           git checkout production
           git merge staging --allow-unrelated-histories
           git push origin production
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
