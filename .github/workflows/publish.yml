@@ -44,7 +44,7 @@ jobs:
         run: |
           git fetch origin
           git checkout staging
-          git merge main --allow-unrelated-histories
+          git merge main -s recursive -X theirs --allow-unrelated-histories
           git push origin staging
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -84,7 +84,7 @@ jobs:
         run: |
           git fetch origin
           git checkout production
-          git merge origin/staging --allow-unrelated-histories
+          git merge origin/staging -s recursive -X theirs --allow-unrelated-histories
           git push origin production
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
