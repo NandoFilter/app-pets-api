@@ -29,17 +29,20 @@ jobs:
         with:
           node-version: 16.x
 
-      - name: Deploy to Staging
-        run: |
-          git checkout staging
-          git merge main
-          git push origin staging
-
       - name: Run install, build and test
         run: |
           npm install
           npm run build
           npm run test
+
+      - name: Fetch all branches
+        run: git fetch --all
+
+      - name: Deploy to Staging
+        run: |
+          git checkout staging
+          git merge main
+          git push origin staging
 
   production:
     if: github.event.inputs.releaseType == 'production'
@@ -61,14 +64,17 @@ jobs:
         with:
           node-version: 16.x
 
-      - name: Deploy to Production
-        run: |
-          git checkout production
-          git merge staging
-          git push origin production
-
       - name: Run install, build and test
         run: |
           npm install
           npm run build
           npm run test
+
+      - name: Fetch all branches
+        run: git fetch --all
+
+      - name: Deploy to Production
+        run: |
+          git checkout production
+          git merge staging
+          git push origin production
