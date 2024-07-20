@@ -4,5 +4,5 @@ const port = process.env.SERVER_PORT ?? 8080
 
 app.listen(port, () => {
   console.log(`Listening at port ${port}!!`)
-  console.log('Teste2')
+  console.log('Teste3')
 })

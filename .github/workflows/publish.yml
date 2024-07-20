@@ -41,7 +41,7 @@ jobs:
       - name: Deploy to Staging
         run: |
           git checkout staging
-          git merge main
+          git merge main --allow-unrelated-histories
           git push origin staging
 
   production:
@@ -76,5 +76,5 @@ jobs:
       - name: Deploy to Production
         run: |
           git checkout production
-          git merge staging
+          git merge staging --allow-unrelated-histories
           git push origin production
