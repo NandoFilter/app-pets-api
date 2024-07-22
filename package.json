@@ -11,7 +11,7 @@
     "knex:rollback": "knex --knexfile ./src/database/knex/Environment.ts migrate:rollback",
     "knex:rollback-all": "knex --knexfile ./src/database/knex/Environment.ts migrate:rollback --all",
     "knex:migrate": "knex --knexfile ./src/database/knex/Environment.ts migrate:latest",
-    "test": "jest --verbose --detectOpenHandles --forceExit"
+    "test": "jest --verbose"
   },
   "dependencies": {
     "cors": "^2.8.5",

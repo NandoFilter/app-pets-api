@@ -1,16 +1,16 @@
-import { KnexConfig } from '../database/knex';
+import { Knex } from '../database/knex';
 
 describe('Users Table', () => {
   const table = 'users'
 
   test('Should pass if Users table exists', async () => {
-    const tableExists = await KnexConfig.schema.hasTable(table)
+    const tableExists = await Knex.schema.hasTable(table)
 
     expect(tableExists).toBeTruthy()
   })
 
   test('Should pass if Users table has the correct columns', async () => {
-    const columns = await KnexConfig.raw(`PRAGMA table_info(${table});`)
+    const columns = await Knex.raw(`PRAGMA table_info(${table});`)
 
     const formattedColumns = columns.map((col: any) => ({
       cid: col.cid,
