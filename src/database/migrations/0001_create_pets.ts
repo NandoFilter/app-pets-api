@@ -16,13 +16,8 @@ export async function up(knex: Knex) {
       table.string('contact', 11).notNullable()
       table.integer('idUser').notNullable()
     })
-    .then(() => {
-      console.log(`# Create table ${TableNames.pets}`)
-    })
 }
 
 export async function down(knex: Knex) {
-  return knex.schema.dropTable(TableNames.pets).then(() => {
-    console.log(`# Dropped table ${TableNames.pets}`)
-  })
+  return knex.schema.dropTable(TableNames.pets)
 }

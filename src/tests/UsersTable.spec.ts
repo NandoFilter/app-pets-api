@@ -1,5 +1,6 @@
 import knex, { Knex } from 'knex'
 import { TableNames } from '../database/TableNames'
+import { up, down } from '../database/migrations/0000_create_users';
 
 describe('Users Table', () => {
   let db: Knex
@@ -13,17 +14,11 @@ describe('Users Table', () => {
       useNullAsDefault: true
     })
 
-    await db.schema.createTable(TableNames.users, (table) => {
-      table.bigIncrements('id').primary().index()
-      table.string('name', 150).index().notNullable()
-      table.string('email', 75).notNullable()
-      table.string('image', 256)
-      table.string('phone', 11).notNullable()
-      table.string('password', 50).notNullable()
-    })
+    await up(db)
   })
 
   afterAll(async () => {
+    await down(db)
     await db.destroy()
   })
 

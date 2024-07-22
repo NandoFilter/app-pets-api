@@ -11,13 +11,8 @@ export async function up(knex: Knex) {
       table.string('phone', 11).notNullable()
       table.string('password', 50).notNullable()
     })
-    .then(() => {
-      console.log(`# Create table ${TableNames.users}`)
-    })
 }
 
 export async function down(knex: Knex) {
-  return knex.schema.dropTable(TableNames.users).then(() => {
-    console.log(`# Dropped table ${TableNames.users}`)
-  })
+  return knex.schema.dropTable(TableNames.users)
 }
