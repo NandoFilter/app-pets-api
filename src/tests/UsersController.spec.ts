@@ -29,9 +29,9 @@ describe('Users Controller', () => {
       },
       {
         id: 2,
-        name: 'Evelyn',
-        email: 'evelyn@email.com',
-        image: 'photo.png',
+        name: 'Juca Bala',
+        email: 'Juca@email.com',
+        image: 'photo1.png',
         phone: '51977776666',
         password: 'teste321'
       }
