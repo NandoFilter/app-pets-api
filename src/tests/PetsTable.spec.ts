@@ -1,16 +1,16 @@
-import { Knex } from '../database/knex';
+import { KnexConfig } from '../database/knex';
 
 describe('Pets Table', () => {
   const table = 'pets'
 
   test('Should pass if Pets table exists', async () => {
-    const tableExists = await Knex.schema.hasTable(table)
+    const tableExists = await KnexConfig.schema.hasTable(table)
 
     expect(tableExists).toBeTruthy()
   })
 
   test('Should pass if Pets table has the correct columns', async () => {
-    const columns = await Knex.raw(`PRAGMA table_info(${table});`)
+    const columns = await KnexConfig.raw(`PRAGMA table_info(${table});`)
 
     const formattedColumns = columns.map((col: any) => ({
       cid: col.cid,

@@ -1,16 +1,15 @@
-import { knex } from 'knex'
-import { development, staging, production } from './Environment'
+import { knex, Knex } from 'knex'
+import path from 'path'
 
-const getEnvironment = () => {
-  switch (process.env.NODE_ENV) {
-    case 'production':
-      return production
-    case 'staging':
-      return staging
-
-    default:
-      return development
+const config: Knex.Config = {
+  client: 'sqlite3',
+  useNullAsDefault: true,
+  connection: {
+    filename: path.resolve(__dirname, '..', 'database.sqlite')
+  },
+  migrations: {
+    directory: path.resolve(__dirname, '..', 'migrations')
   }
 }
 
-export const Knex = knex(getEnvironment())
+export const KnexConfig = knex(config)
