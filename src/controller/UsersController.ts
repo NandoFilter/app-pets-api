@@ -10,7 +10,7 @@ export default class UsersController {
 
     if (!users) return res.status(HttpStatus.NO_CONTENT).end()
 
-    return res.status(HttpStatus.OK).json({ data: users, color: 'Azul'})
+    return res.status(HttpStatus.OK).json(users)
   }
 
   // GET: /users/1
