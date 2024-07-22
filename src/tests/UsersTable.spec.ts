@@ -1,29 +1,16 @@
-import knex, { Knex } from 'knex'
-import { TableNames } from '../database/TableNames'
-import { up, down } from '../database/migrations/0000_create_users';
+import { Knex } from '../database/knex';
 
 describe('Users Table', () => {
-  let db: Knex
+  const table = 'users'
 
-  beforeAll(async () => {
-    db = knex({
-      client: 'sqlite3',
-      connection: {
-        filename: ':memory:'
-      },
-      useNullAsDefault: true
-    })
+  test('Should pass if Users table exists', async () => {
+    const tableExists = await Knex.schema.hasTable(table)
 
-    await up(db)
+    expect(tableExists).toBeTruthy()
   })
 
-  afterAll(async () => {
-    await down(db)
-    await db.destroy()
-  })
-
-  test('Should create Users table with the correct columns', async () => {
-    const columns = await db.raw(`PRAGMA table_info(${TableNames.users});`)
+  test('Should pass if Users table has the correct columns', async () => {
+    const columns = await Knex.raw(`PRAGMA table_info(${table});`)
 
     const formattedColumns = columns.map((col: any) => ({
       cid: col.cid,

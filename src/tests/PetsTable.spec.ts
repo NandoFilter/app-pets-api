@@ -1,29 +1,16 @@
-import knex, { Knex } from 'knex'
-import { TableNames } from '../database/TableNames'
-import { up, down } from '../database/migrations/0001_create_pets';
+import { Knex } from '../database/knex';
 
 describe('Pets Table', () => {
-  let db: Knex
+  const table = 'pets'
 
-  beforeAll(async () => {
-    db = knex({
-      client: 'sqlite3',
-      connection: {
-        filename: ':memory:'
-      },
-      useNullAsDefault: true
-    })
+  test('Should pass if Pets table exists', async () => {
+    const tableExists = await Knex.schema.hasTable(table)
 
-    await up(db)
+    expect(tableExists).toBeTruthy()
   })
 
-  afterAll(async () => {
-    await down(db)
-    await db.destroy()
-  })
-
-  test('Should create Pets table with the correct columns', async () => {
-    const columns = await db.raw(`PRAGMA table_info(${TableNames.pets});`)
+  test('Should pass if Pets table has the correct columns', async () => {
+    const columns = await Knex.raw(`PRAGMA table_info(${table});`)
 
     const formattedColumns = columns.map((col: any) => ({
       cid: col.cid,
