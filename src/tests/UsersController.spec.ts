@@ -37,18 +37,13 @@ describe('Users Controller', () => {
       }
     ]
 
-    const returnedValue = {
-      data: mockUsers,
-      color: 'Azul'
-    }
-
     const mockFunc = UserTransaction.getAll as jest.Mock
     mockFunc.mockResolvedValueOnce(mockUsers)
 
     await UsersController.findAll({} as Request, response as Response)
 
     expect(mockFunc).toHaveBeenCalledTimes(1)
-    expect(response.json).toHaveBeenCalledWith(returnedValue)
+    expect(response.json).toHaveBeenCalledWith(mockUsers)
     expect(response.status).toHaveBeenCalledWith(HttpStatus.OK)
   })
 
