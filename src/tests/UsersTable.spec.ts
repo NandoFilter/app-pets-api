@@ -27,7 +27,8 @@ describe('Users Table', () => {
       { cid: 2, name: 'email', type: 'varchar(75)', notnull: 1, dflt_value: null, pk: 0 },
       { cid: 3, name: 'image', type: 'varchar(256)', notnull: 0, dflt_value: null, pk: 0 },
       { cid: 4, name: 'phone', type: 'varchar(11)', notnull: 1, dflt_value: null, pk: 0 },
-      { cid: 5, name: 'password', type: 'varchar(50)', notnull: 1, dflt_value: null, pk: 0 }
+      { cid: 5, name: 'password', type: 'varchar(50)', notnull: 1, dflt_value: null, pk: 0 },
+      { cid: 6, name: 'color', type: 'varchar(150)', notnull: 0, dflt_value: null, pk: 0 }
     ])
   })
 })

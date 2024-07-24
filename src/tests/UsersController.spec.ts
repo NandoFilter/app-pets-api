@@ -25,7 +25,8 @@ describe('Users Controller', () => {
         email: 'fernando@email.com',
         image: 'photo.png',
         phone: '51988887777',
-        password: 'teste123'
+        password: 'teste123',
+        color: ''
       },
       {
         id: 2,
@@ -33,7 +34,8 @@ describe('Users Controller', () => {
         email: 'Juca@email.com',
         image: 'photo1.png',
         phone: '51977776666',
-        password: 'teste321'
+        password: 'teste321',
+        color: ''
       }
     ]
 

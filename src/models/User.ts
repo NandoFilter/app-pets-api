@@ -5,6 +5,7 @@ interface User {
   image?: string
   phone: string
   password: string
+  color?: string
 }
 
 export default User
